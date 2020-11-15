@@ -1,0 +1,32 @@
+
+@base_URL = http://localhost:3333
+
+# @name listRepositories
+GET {{base_URL}}/repositories
+
+###
+@id = {{listRepositories.response.body.$[0].id}}
+
+POST {{base_URL}}/repositories/
+content-type: application/json
+
+{
+    "title": "React App",
+    "url":"http://asdf.fdsa.com",
+    "tech":"React"
+}
+
+###
+PUT {{base_URL}}/repositories/{{id}}
+content-type: application/json
+
+{
+    "title": "React App2",
+    "url":"http://newsite.com",
+    "likes":2
+}
+
+###
+DELETE  {{base_URL}}/repositories/{{id}}
+
+POST {{base_URL}}/repositories/{{id}}/like
